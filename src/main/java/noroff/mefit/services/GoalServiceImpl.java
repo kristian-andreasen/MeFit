@@ -1,27 +1,29 @@
 package noroff.mefit.services;
 
+import noroff.mefit.models.Goal;
 import noroff.mefit.models.UserAcc;
 
 import java.util.Collection;
 
 public class GoalServiceImpl implements GoalService{
+
     @Override
-    public UserAcc findById(Integer integer) {
+    public Goal findById(Integer integer) {
         return null;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
+    public Collection<Goal> findAll() {
         return null;
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
+    public Goal add(Goal entity) {
         return null;
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
+    public Goal update(Goal entity) {
         return null;
     }
 

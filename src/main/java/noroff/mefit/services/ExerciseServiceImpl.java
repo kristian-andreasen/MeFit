@@ -1,27 +1,29 @@
 package noroff.mefit.services;
 
+import noroff.mefit.models.Exercise;
 import noroff.mefit.models.UserAcc;
 
 import java.util.Collection;
 
 public class ExerciseServiceImpl implements ExerciseService{
+
     @Override
-    public UserAcc findById(Integer integer) {
+    public Exercise findById(Integer integer) {
         return null;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
+    public Collection<Exercise> findAll() {
         return null;
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
+    public Exercise add(Exercise entity) {
         return null;
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
+    public Exercise update(Exercise entity) {
         return null;
     }
 

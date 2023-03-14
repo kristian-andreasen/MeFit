@@ -1,27 +1,29 @@
 package noroff.mefit.services;
 
+import noroff.mefit.models.SetCount;
 import noroff.mefit.models.UserAcc;
 
 import java.util.Collection;
 
 public class SetCountServiceImpl implements SetCountService{
+
     @Override
-    public UserAcc findById(Integer integer) {
+    public SetCount findById(Integer integer) {
         return null;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
+    public Collection<SetCount> findAll() {
         return null;
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
+    public SetCount add(SetCount entity) {
         return null;
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
+    public SetCount update(SetCount entity) {
         return null;
     }
 

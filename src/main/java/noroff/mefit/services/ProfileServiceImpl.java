@@ -1,28 +1,30 @@
 package noroff.mefit.services;
 
 
+import noroff.mefit.models.Profile;
 import noroff.mefit.models.UserAcc;
 
 import java.util.Collection;
 
 public class ProfileServiceImpl implements ProfileService {
+
     @Override
-    public UserAcc findById(Integer integer) {
+    public Profile findById(Integer integer) {
         return null;
     }
 
     @Override
-    public Collection<UserAcc> findAll() {
+    public Collection<Profile> findAll() {
         return null;
     }
 
     @Override
-    public UserAcc add(UserAcc entity) {
+    public Profile add(Profile entity) {
         return null;
     }
 
     @Override
-    public UserAcc update(UserAcc entity) {
+    public Profile update(Profile entity) {
         return null;
     }
 
