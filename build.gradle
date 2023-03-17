@@ -1,23 +1,26 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.0.4'
+	id "org.springframework.boot" version "3.0.4"
 	id 'io.spring.dependency-management' version '1.1.0'
+	id "com.microsoft.azure.azurewebapp" version "1.1.0"
 }
-
 group = 'noroff'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
+	maven {
+		url = uri("https://plugins.gradle.org/m2/")
+	}
 }
 
 dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-
-
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.2'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server:'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -35,7 +38,23 @@ dependencies {
 
 
 }
+azurewebapp {
+	subscription = '6d25e36e-f82a-445e-a527-fe923d08134c'
+	resourceGroup = 'testtestf'
+	appName = 'testtestse'
+	pricingTier = 'P1v2'
+	region = 'westeurope'
+	runtime {
+		os = 'Linux'
+		webContainer = 'Tomcat 9.0'
+		javaVersion = 'Java 8'
+	}
+}
+
+
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+

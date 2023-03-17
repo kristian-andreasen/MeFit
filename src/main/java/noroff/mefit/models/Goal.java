@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
+
 public class Goal {
 
     @Id
@@ -22,10 +23,10 @@ public class Goal {
 
 
     @Column( nullable = false)
-    private boolean acheived ;
+    private boolean achieved ;
 
     @Column(name="end_date",length = 100, nullable = false)
-    private LocalDate endDate ;
+    private String endDate ;
 
 
     @OneToOne(mappedBy = "goal")
