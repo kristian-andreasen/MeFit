@@ -26,7 +26,6 @@ public class ProgramController {
         Collection<Program> toReturn = programService.findAll();
         return ResponseEntity.ok(toReturn);
     }
-
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
@@ -36,7 +35,7 @@ public class ProgramController {
         return ResponseEntity.ok(program);
     }
 
-    @PostMapping()
+  @PostMapping()
     public ResponseEntity<Program> add(@RequestBody Program program) {
         Program programToAdd = programService.add(program);
         URI location = URI.create("api/v1/programs/" + programToAdd.getId());
