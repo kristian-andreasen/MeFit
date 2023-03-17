@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main # Change this to the name of your main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Change this to your desired operating system
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11' # Change this to your desired Java version
+
+      - name: Build with Gradle
+        run: ./gradlew build # Change this to your build command
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-artifact
+          path: build/libs/*.jar # Change this to your path to the built artifact
