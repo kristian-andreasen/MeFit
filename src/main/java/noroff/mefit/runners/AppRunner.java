@@ -17,38 +17,12 @@ import org.springframework.stereotype.Component;
 public class AppRunner implements ApplicationRunner {
 
 
-    private final UserAccService userAccService;
-    private final AddressService addressService;
-    private final ProfileService profileService;
-    private final ExerciseService exerciseService;
-    private final SetCountService setCountService;
-    private final GoalService goalService;
-    private final ProgramService programService;
-    private final WorkoutService workoutService;
-    public AppRunner(UserAccService userAccService, AddressService addressService, ProfileService profileService, ExerciseService exerciseService, SetCountService setCountService, GoalService goalService, ProgramService programService, WorkoutService workoutService) {
 
-        this.userAccService = userAccService;
-        this.addressService = addressService;
-        this.profileService = profileService;
-        this.exerciseService = exerciseService;
-
-        this.setCountService = setCountService;
-        this.goalService = goalService;
-        this.programService = programService;
-        this.workoutService = workoutService;
-    }
 
     @Override
     @Transactional
     //need to add @Transactional to be able to delete from both sides of the relationship.
     public void run(ApplicationArguments args) throws Exception {
-        //addressService.deleteById(1);
-        //profileService.deleteById(1);
-        //exerciseService.deleteById(1);
-        //setCountService.deleteById(1);
-        //goalService.deleteById(1);
-        //programService.deleteById(1);
-        //workoutService.deleteById(1);
 
 
 
