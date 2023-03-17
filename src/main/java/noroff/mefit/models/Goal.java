@@ -22,7 +22,7 @@ public class Goal {
 
 
     @Column( nullable = false)
-    private boolean acheived ;
+    private boolean achieved;
 
     @Column(name="end_date",length = 100, nullable = false)
     private LocalDate endDate ;
