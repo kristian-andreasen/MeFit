@@ -1,7 +1,11 @@
 package noroff.mefit.controllers;
 
+
 import noroff.mefit.dtos.ExerciseDTO;
 import noroff.mefit.mappers.ExerciseMapper;
+
+import noroff.mefit.models.Address;
+
 import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
 import noroff.mefit.services.ExerciseServiceImpl;
@@ -52,7 +56,14 @@ public class ExerciseController {
 
         return ResponseEntity.created(location).build();
     }
-
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Exercise exercise, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != exercise.getId())
+            return ResponseEntity.badRequest().build();
+        exerciseService.update(exercise);
+        return ResponseEntity.noContent().build();
+    }
 
     @PutMapping("{id}")
     public ResponseEntity<ExerciseDTO> update(@PathVariable("id") int id, @RequestBody ExerciseDTO exerciseDTO) {

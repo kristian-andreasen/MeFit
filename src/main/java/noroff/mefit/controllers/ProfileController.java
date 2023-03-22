@@ -26,13 +26,13 @@ public class ProfileController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity getById(@PathVariable int id) {
+    public ResponseEntity getById(@PathVariable String id) {
 
         Profile profile = profileService.findById(id);
 
         return ResponseEntity.ok(profile);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public ResponseEntity<Profile> add(@RequestBody Profile profile) {
         Profile profileToAdd = profileService.add(profile);
@@ -40,6 +40,13 @@ public class ProfileController {
         return ResponseEntity.created(location).build();
     }
 
-
+    @PutMapping("{id}")
+    public ResponseEntity update(@RequestBody Profile profile, @PathVariable String id) {
+        // Validates if body is correct
+        if(id != profile.getId())
+            return ResponseEntity.badRequest().build();
+        profileService.update(profile);
+        return ResponseEntity.noContent().build();
+    }
 
 }
