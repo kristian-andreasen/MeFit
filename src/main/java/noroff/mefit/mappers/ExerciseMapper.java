@@ -9,14 +9,14 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface ExerciseMapper {
 
-    //@Mapping(target = "setCounts", ignore = true)
+    @Mapping(target = "setCounts", ignore = true)
     ExerciseDTO exerciseDTO(Exercise exercise);
 
     //@Mapping(target = "setCounts", ignore = true)
     Exercise exerciseDtoToExercise(ExerciseDTO exerciseDTO);
 
 
-    //@Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", ignore = true)
     void updateExerciseFromDto(ExerciseDTO exerciseDTO, @MappingTarget Exercise exercise);
 
 
