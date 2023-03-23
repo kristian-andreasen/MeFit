@@ -4,18 +4,14 @@ package noroff.mefit.controllers;
 import noroff.mefit.dtos.ExerciseDTO;
 import noroff.mefit.mappers.ExerciseMapper;
 
-import noroff.mefit.models.Address;
-
 import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
 import noroff.mefit.services.ExerciseServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/exercises")
@@ -29,7 +25,7 @@ public class ExerciseController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("")
+/*    @GetMapping("")
     public ResponseEntity<Collection<ExerciseDTO>> getAll(){
         Collection<Exercise> exercises = exerciseService.findAll();
         Collection<ExerciseDTO> exerciseDTOs = exercises.stream()
@@ -37,6 +33,14 @@ public class ExerciseController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(exerciseDTOs);
+    }*/
+
+    @GetMapping // GET: localhost:8080/api/v1/exercies
+    public ResponseEntity getAll() {
+        Collection<ExerciseDTO> studs = exerciseMapper.exercisesToExercisesDto(
+                exerciseService.findAll()
+        );
+        return ResponseEntity.ok(studs);
     }
 
     @GetMapping("{id}")
@@ -57,7 +61,6 @@ public class ExerciseController {
         return ResponseEntity.created(location).build();
     }
 
-
     @PutMapping("{id}")
     public ResponseEntity<ExerciseDTO> update(@PathVariable("id") int id, @RequestBody ExerciseDTO exerciseDTO) {
     Exercise existingExercise = exerciseService.findById(id);
@@ -69,6 +72,7 @@ public class ExerciseController {
     // not strictly necessary to return the updated DTO
     ExerciseDTO updatedDto = exerciseMapper.exerciseDTO(existingExercise);
     return ResponseEntity.ok(updatedDto);
+
 
 }
 
