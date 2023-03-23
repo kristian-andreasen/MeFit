@@ -5,9 +5,9 @@ import noroff.mefit.models.SetCount;
 
 import java.util.Set;
 
+@Data
 @Getter
 @Setter
-@Data
 public class ExerciseDTO {
 
         private int id;

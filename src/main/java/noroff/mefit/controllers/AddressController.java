@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Collection;
 
-@Controller
+@RestController
 @RequestMapping("api/v1/addresses")
 public class AddressController {
     private final AddressService addressService;

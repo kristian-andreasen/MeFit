@@ -17,7 +17,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("api/v1/exercises")
 public class ExerciseController {
     private final ExerciseService exerciseService;
@@ -66,7 +66,7 @@ public class ExerciseController {
     }
     exerciseMapper.updateExerciseFromDto(exerciseDTO, existingExercise);
     exerciseService.update(existingExercise);
-
+    // not strictly necessary to return the updated DTO
     ExerciseDTO updatedDto = exerciseMapper.exerciseDTO(existingExercise);
     return ResponseEntity.ok(updatedDto);
 
