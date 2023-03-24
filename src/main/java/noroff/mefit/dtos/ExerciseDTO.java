@@ -16,5 +16,5 @@ public class ExerciseDTO {
         private String muscle_group;
         private String imageURL;
         private String videoURL;
-        private Set<Integer> setCounts;
+       // private Set<Integer> setCounts;
 }

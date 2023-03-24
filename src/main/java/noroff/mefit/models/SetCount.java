@@ -36,12 +36,12 @@ public class SetCount {
         return null;
     }
 
-    @JsonGetter("exercise")
+/*    @JsonGetter("exercise")
     public Integer jsonGetExercise(){
         if(exercise!= null){
             return exercise.getId();
         }
         return null;
-    }
+    }*/
 
 }

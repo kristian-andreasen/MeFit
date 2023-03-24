@@ -84,7 +84,7 @@ public class ExerciseController {
 }
     @Operation(summary = "Adding a new exercise")
     @PostMapping()
-    public ResponseEntity<Exercise> add(@RequestBody ExerciseDTO exerciseDTO) {
+    public ResponseEntity<ExerciseDTO> add(@RequestBody ExerciseDTO exerciseDTO) {
         Exercise dtoToExercise = exerciseMapper.exerciseDtoToExercise(exerciseDTO);
         Exercise exerciseToAdd = exerciseService.add(dtoToExercise);
         URI location = URI.create("api/v1/exercises/" + exerciseToAdd.getId());
@@ -111,7 +111,6 @@ public class ExerciseController {
         return ResponseEntity.badRequest().build();
     }
     exerciseMapper.updateExerciseFromDto(exerciseDTO, existingExercise);
-        System.out.println(existingExercise.getSetCounts());
     exerciseService.update(existingExercise);
     return ResponseEntity.ok(exerciseMapper.exerciseDTO(existingExercise));
 }

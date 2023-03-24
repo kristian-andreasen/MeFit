@@ -19,12 +19,12 @@ public abstract class ExerciseMapper {
     @Autowired
     protected SetCountService setCountService ;
 
-    @Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "setCountsToIds")
+    //@Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "setCountsToIds")
     public abstract ExerciseDTO exerciseDTO(Exercise exercise);
 
     public abstract Collection<ExerciseDTO> exercisesToExercisesDto(Collection<Exercise> exercises);
 
-    @Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "SetCountDTOIdsToSetCounts")
+   // @Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "SetCountDTOIdsToSetCounts")
     public abstract Exercise exerciseDtoToExercise(ExerciseDTO exerciseDTO);
 
     @Named("setCountsToIds")
@@ -35,15 +35,15 @@ public abstract class ExerciseMapper {
                 .map(s -> s.getId()).collect(Collectors.toSet());
     }
 
-    @Named("SetCountDTOIdsToSetCounts")
+/*    @Named("SetCountDTOIdsToSetCounts")
     Set<SetCount> SetCountDTOIdsToSetCounts(Set<Integer> id) {
         return id.stream()
                 .map( i -> setCountService.findById(i))
                 .collect(Collectors.toSet());
-    }
+    }*/
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "SetCountDTOIdsToSetCounts")
+    //@Mapping(target ="setCounts", source = "setCounts", qualifiedByName = "SetCountDTOIdsToSetCounts")
     public abstract void updateExerciseFromDto(ExerciseDTO exerciseDTO, @MappingTarget Exercise exercise);
 
 
