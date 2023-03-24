@@ -14,6 +14,7 @@ import noroff.mefit.models.Exercise;
 import noroff.mefit.services.ExerciseService;
 import noroff.mefit.services.ExerciseServiceImpl;
 import noroff.mefit.util.ApiErrorResponse;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +82,7 @@ public class ExerciseController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }
-
+    @Operation(summary = "Adding a new exercise")
     @PostMapping()
     public ResponseEntity<Exercise> add(@RequestBody ExerciseDTO exerciseDTO) {
         Exercise dtoToExercise = exerciseMapper.exerciseDtoToExercise(exerciseDTO);
@@ -90,7 +91,19 @@ public class ExerciseController {
 
         return ResponseEntity.created(location).build();
     }
-
+    @Operation(summary = "Updates an exercise")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "204",
+                    description = "Exercise successfully updated",
+                    content = @Content),
+            @ApiResponse(responseCode = "400",
+                    description = "Malformed request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorAttributeOptions.class)) }),
+            @ApiResponse(responseCode = "404",
+                    description = "Exercise not found with supplied ID",
+                    content = @Content)
+    })
     @PutMapping("{id}")
     public ResponseEntity<ExerciseDTO> update(@PathVariable int id, @RequestBody ExerciseDTO exerciseDTO) {
     Exercise existingExercise = exerciseService.findById(id);
@@ -101,7 +114,6 @@ public class ExerciseController {
         System.out.println(existingExercise.getSetCounts());
     exerciseService.update(existingExercise);
     return ResponseEntity.ok(exerciseMapper.exerciseDTO(existingExercise));
-
 }
 
 }
