@@ -28,6 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/addresses",   "/api/v1/addresses/**").permitAll()//TODO clean up
                         .requestMatchers("/api/v1/exercises",   "/api/v1/exercises/**").permitAll()//TODO clean up
                         .requestMatchers("/api/v1/activities",    "/api/v1/activities/**").permitAll()//TODO clean up
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
 
 
                         //.requestMatchers("/api/v1/resources/authorized").hasAnyAuthority()
@@ -38,4 +39,5 @@ public class SecurityConfig {
                 .jwt();
         return http.build();
     }
+
 }
