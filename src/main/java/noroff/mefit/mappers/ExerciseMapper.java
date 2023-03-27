@@ -6,17 +6,20 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+
+import java.util.Collection;
+
 @Mapper(componentModel = "spring")
-public interface ExerciseMapper {
+public abstract class ExerciseMapper {
 
+    public abstract ExerciseGetDTO exerciseDTO(Exercise exercise);
 
+    public abstract Collection<ExerciseGetDTO> exercisesToExercisesDto(Collection<Exercise> exercises);
 
-    //@Mapping(target = "setCounts", ignore = true)
-    Exercise exerciseDtoToExercise(ExerciseGetDTO exerciseDTO);
-
+    public abstract Exercise exerciseDtoToExercise(ExerciseGetDTO exerciseDTO);
 
     @Mapping(target = "id", ignore = true)
-    void updateExerciseFromDto(ExerciseGetDTO exerciseDTO, @MappingTarget Exercise exercise);
+    public abstract void updateExerciseFromDto(ExerciseGetDTO exerciseDTO, @MappingTarget Exercise exercise);
 
 
 

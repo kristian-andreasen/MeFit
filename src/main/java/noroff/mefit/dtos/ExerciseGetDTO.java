@@ -4,9 +4,9 @@ import lombok.*;
 
 import java.util.Set;
 
+@Data
 @Getter
 @Setter
-@Data
 public class ExerciseGetDTO {
 
         private int id;
