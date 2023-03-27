@@ -20,17 +20,11 @@ public class Activity {
     @Column(nullable = true)
     private boolean completed;
 
-
     @ManyToOne
-    @JoinColumn(name = "workout_id", nullable = false)
+    @JoinColumn(name = "workout_id")
     private Workout workout;
 
     @ManyToOne
-    @JoinColumn(name = "exercise_id", nullable = false)
-    private Exercise exercise;
-
-    @ManyToOne
-    @JoinColumn(name = "goal_id", nullable = false)
+    @JoinColumn(name = "goal_id")
     private Goal goal;
-
 }

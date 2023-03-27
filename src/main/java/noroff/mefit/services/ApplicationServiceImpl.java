@@ -35,10 +35,10 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public void deleteById(Integer id) {
-        Application application = findById(id);
+        /*Application application = findById(id);
         if(application.getProfile()!= null){
             application.getProfile().setApplication(null);
         }
-        applicationsRepository.deleteById(id);
+        applicationsRepository.deleteById(id);*/
     }
 }

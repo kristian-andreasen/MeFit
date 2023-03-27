@@ -22,22 +22,15 @@ public class Exercise {
     @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
-    @Column(name = "target_muscle_group")
-    private String muscle_group;
-
     @Column(name="image_url", nullable = true)
-    private String imageURL; 
-
-    @Column(name="video_url", nullable = true)
-    private String videoURL;
+    private String imageURL;
 
     @Column(name="repetitions", nullable = true)
     private int repetitions;
 
     @Column(name="sets", nullable = true)
     private int sets;
-    
 
-
-
+    @ManyToMany(mappedBy = "exercises")
+    private Set<Workout> workouts;
 }

@@ -26,16 +26,4 @@ public class Address {
     private String city;
     @Column(length = 100, nullable = true)
     private String country;
-
-    @OneToOne(mappedBy = "address")
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
-
-    @JsonGetter("profile")
-    public String jsonGetProfile(){
-        if(profile!= null){
-            return profile.getId();
-        }
-        return null;
-    }
 }

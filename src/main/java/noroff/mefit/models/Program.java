@@ -28,9 +28,6 @@ public class Program {
     @Column(length = 1000)
     private String imageURL;
 
-    @OneToMany(mappedBy = "program")
-    private Set<Profile> profiles;
-
     @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
     private Set<Goal> goals;
 
@@ -42,12 +39,4 @@ public class Program {
     )
     private Set<Workout> workouts;
 
-    @JsonGetter("profiles")
-    public List<String> jsonGetProfile(){
-        if(profiles!= null){
-            return profiles.stream().map(s -> s.getId())
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
 }

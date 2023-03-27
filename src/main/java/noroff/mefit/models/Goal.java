@@ -53,6 +53,9 @@ public class Goal {
 
     private Set<Workout> workouts;
 
+    @OneToMany(mappedBy = "goal", cascade = CascadeType.ALL)
+    private Set<Activity> activityLogs;
+
     @JsonGetter("profile")
     public String jsonGetProfile(){
         if(profile!= null){

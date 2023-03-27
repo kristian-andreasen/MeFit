@@ -1,46 +1,28 @@
--- user_acc
-/*INSERT INTO user_acc ("first_name", is_admin, is_contributor, "last_name", "password") VALUES ('Wojak', false, false,'Derp','1234' ); -- 1*/
+-- Insert a user profile
+INSERT INTO profile(id, email, role, first_name, last_name, age, weight, height)
+VALUES ('1', 'john@example.com', 'user', 'John', 'Doe', 30, 80.5, 180.0);
 
--- address
-INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
+-- Insert two fitness programs
+INSERT INTO program (name, author, description, imageURL) VALUES('Beginner work capacity','Arnold Schwarzenegger', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'This is a description.');
+INSERT INTO program (name, author, description, imageURL) VALUES ('Beginner fundamental strength','The Rock', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'this is a description');
 
--- goal
---INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', false, '03-01-2023', '03-08-2023');
+-- Insert three workouts
+INSERT INTO workout (name) VALUES ('General Warm-up');
+INSERT INTO workout (name) VALUES ('Day 1 arms');
+INSERT INTO workout (name) VALUES ('Day 3');
 
--- program
+-- Insert four exercises
+INSERT INTO exercise (name, description, repetitions, sets) VALUES('Push-up', 'description', 1, 10);
+INSERT INTO exercise (name, description, repetitions, sets) VALUES('Sit-up', 'description', 1, 10);
+INSERT INTO exercise (name, description, repetitions, sets) VALUES('Pistol-Squat', 'description', 20, 20);
+INSERT INTO exercise (name, description, repetitions, sets) VALUES('Pull-up', 'description', 1, 10);
 
-INSERT INTO program ("name","author" , "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'This is a description.');
-INSERT INTO program ("name","author", "imageurl", description) VALUES ('Beginner fundamental strength','The Rock', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+-- Insert two goals, one associated with program 1
+INSERT INTO goal(name, achieved, start_date, end_date, user_id, profile_id, program_id) VALUES('Get stronger', false, '2022-01-01', '2022-03-31', 1, 1, 1);
 
+-- Associate the workouts with the goals
+INSERT INTO goal_workout(goal_id, workout_id) VALUES(1, 1);
 
--- profile
-/*INSERT INTO profile (user_id, address_id, goal_id, program_id, age, weight, height) VALUES (1, 1, 1, 1, 25, 60, 168); -- 1*/
-
-
--- Excercies
-INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", "video_url",repetitions,sets) VALUES('Push-up', 'Lie prone with forefeet on floor and hands slightly wider than shoulder width. Raise body up off floor by extending arms with body straight.', 'Pectoralis Major, Sternal', 'URL','URL',1,10);
-INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", "video_url",repetitions, sets) VALUES('Sit-up', 'Hook feet under foot brace or secure low overhang. Lie supine on floor or bench with hips bent. Place hands behind neck or on side of neck. Raise torso from bench by bending waist and hips. Return until back of shoulders contact incline board. Repeat.', 'Rectus Abdominis', 'URL','URL',1,10);
-INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", "video_url",repetitions, sets) VALUES('Pistol-Squat', 'Stand with arms extended out in front. Balance on one leg with opposite leg extended forward off of ground. Squat down as far as possible while keeping leg elevated off of floor. Keep back as straight as possible and supporting knee pointed same direction as foot supporting. Raise body back up to original position until knee and hip of supporting leg is straight. Repeat and continue with opposite leg.', 'Gluteus Maximus', 'URL','URL',20,20);
-INSERT INTO exercise ("name", "description","target_muscle_group", "image_url", "video_url",repetitions, sets) VALUES('Pull-up', 'Step up and grasp bar with overhand wide grip.Pull body up until chin is above bar. Lower body until arms and shoulders are fully extended. Repeat.', 'Latissimus Dorsi', 'URL','URL',1,10);
-
-
-
-
--- workout
-INSERT INTO workout ("name", "type") VALUES ('General Warm-up', 'low resistance');
-INSERT INTO workout ("name", "type") VALUES ('Day 1 arms', 'high resistance');
-INSERT INTO workout ("name", "type") VALUES ('Day 3', 'high repetition');
-
--- workout_set
-
-
--- goal_workout
---INSERT INTO goal_workout (goal_id,workout_id) VALUES (1,1);
-
---program_workout
-INSERT INTO program_workout(program_id, workout_id) VALUES(1,1);
-INSERT INTO program_workout(program_id, workout_id) VALUES(1,2);
-
---activity
---INSERT INTO activity(workout_id, exercise_id, goal_id, completed) VALUES(1, 1, 1, false)
+-- Associate the exercises with the workouts
+INSERT INTO workout_exercise(workout_id, exercise_id) VALUES(1, 1);
 

@@ -21,14 +21,19 @@ public class Workout {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 50, nullable = true)
-    private String type;
-
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
 
     @ManyToMany(mappedBy = "workouts")
     private Set<Goal> goals;
+
+    @ManyToMany
+    @JoinTable(
+            name = "workout_exercise",
+            joinColumns = {@JoinColumn(name = "workout_id")},
+            inverseJoinColumns = {@JoinColumn(name = "exercise_id")}
+    )
+    private Set<Exercise> exercises;
 
     @JsonGetter("programs")
     public List<Integer> jsonGetPrograms(){

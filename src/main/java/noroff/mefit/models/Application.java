@@ -14,15 +14,12 @@ public class Application {
     private int id;
     private String message;
 
-    @OneToOne(mappedBy = "application")
-    private Profile profile;
-
-    @JsonGetter("profile")
+    /*@JsonGetter("profile")
     public String jsonGetProfile(){
         if(profile!= null){
             return profile.getId();
         }
         return null;
-    }
+    }*/
 
 }
