@@ -25,20 +25,14 @@ public class Program {
     @Column(columnDefinition="TEXT")
     private String description;
 
-    @Column(length = 50, nullable = true)
-    private String category;
-
     @Column(length = 1000)
     private String imageURL;
 
-    // relationships
-    //TODO does program need foreign keys to all entities? so far not added.
     @OneToMany(mappedBy = "program")
     private Set<Profile> profiles;
 
-
-    @OneToOne(mappedBy = "program")
-    private Goal goal;
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
+    private Set<Goal> goals;
 
     @ManyToMany
     @JoinTable(
@@ -46,10 +40,8 @@ public class Program {
             joinColumns = {@JoinColumn(name = "program_id")},
             inverseJoinColumns = {@JoinColumn(name = "workout_id")}
     )
-
     private Set<Workout> workouts;
 
-    //this is temporary until we use dtos for stuff
     @JsonGetter("profiles")
     public List<String> jsonGetProfile(){
         if(profiles!= null){
@@ -57,35 +49,5 @@ public class Program {
                     .collect(Collectors.toList());
         }
         return null;
-    }
-    @JsonGetter("goal")
-    public Integer jsonGetGoal(){
-        if(goal!= null){
-            return goal.getId();
-        }
-        return null;
-    }
-    /*@JsonGetter("workouts")
-    public List<Integer> jsonGetWorkouts(){
-        if(workouts!= null){
-            return workouts.stream().map(s -> s.getId())
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }*/
-
-
-
-
-    @Override
-    public String toString() {
-        return "Program{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", profile=" + profiles +
-                ", goal=" + goal +
-                ", workouts=" + workouts +
-                '}';
     }
 }

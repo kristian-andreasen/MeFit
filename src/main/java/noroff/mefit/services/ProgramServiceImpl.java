@@ -39,7 +39,7 @@ public class ProgramServiceImpl implements ProgramService{
     public void deleteById(Integer id) {
         //maybe bad
         Program program = findById(id);
-        if(program.getGoal()!= null){
+        /*if(program.getGoal()!= null){
             program.getGoal().setProgram(null);
         }
         program.getProfiles().forEach(s->{
@@ -52,6 +52,6 @@ public class ProgramServiceImpl implements ProgramService{
             s.setPrograms(tempSet);
         });
 
-        programRepository.delete(program);
+        programRepository.delete(program);*/
     }
 }

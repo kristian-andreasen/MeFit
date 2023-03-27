@@ -42,7 +42,7 @@ public class GoalServiceImpl implements GoalService{
 
     @Override
     public void deleteById(Integer id) {
-        Goal goal = findById(id);
+        /*Goal goal = findById(id);
         if(goal.getProgram()!= null){
             goal.getProgram().setGoal(null);
         }
@@ -54,6 +54,6 @@ public class GoalServiceImpl implements GoalService{
             tempSet.remove(goal);
             s.setGoals(tempSet);
         });
-        goalRepository.delete(goal);
+        goalRepository.delete(goal);*/
     }
 }

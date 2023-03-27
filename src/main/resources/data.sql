@@ -9,8 +9,8 @@ INSERT INTO address ("address_line1","address_line2","address_line3","city","cou
 
 -- program
 
-INSERT INTO program ("name","author", "category", "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger','Calisthenics', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'This is a description.');
-INSERT INTO program ("name","author", "category", "imageurl", description) VALUES ('Beginner fundamental strength','The Rock','Weightlifting', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+INSERT INTO program ("name","author" , "imageurl", "description") VALUES ('Beginner work capacity','Arnold Schwarzenegger', 'https://i.insider.com/62de9331bd18c30019d1a729?width=1000&format=jpeg&auto=webp', 'This is a description.');
+INSERT INTO program ("name","author", "imageurl", description) VALUES ('Beginner fundamental strength','The Rock', 'https://www.muscleandfitness.com/wp-content/uploads/2019/02/ronnie-coleman-squat-barbell-1109.jpg?quality=86&strip=all', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 
 
 -- profile

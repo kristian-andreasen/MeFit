@@ -24,16 +24,11 @@ public class Workout {
     @Column(length = 50, nullable = true)
     private String type;
 
-
-
-
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
 
     @ManyToMany(mappedBy = "workouts")
     private Set<Goal> goals;
-
-
 
     @JsonGetter("programs")
     public List<Integer> jsonGetPrograms(){
@@ -52,9 +47,4 @@ public class Workout {
         }
         return null;
     }
-
-
-
-
-
 }
