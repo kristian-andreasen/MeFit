@@ -24,7 +24,7 @@ import java.util.Collection;
 @RequestMapping("api/v1/exercises")
 public class ExerciseController {
     private final ExerciseService exerciseService;
-    private ExerciseMapper exerciseMapper;
+    private final ExerciseMapper exerciseMapper;
 
 
     public ExerciseController(ExerciseServiceImpl exerciseService, ExerciseMapper exerciseMapper) {
@@ -50,14 +50,10 @@ public class ExerciseController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public ResponseEntity getAll(){
-        try {
             Collection<ExerciseGetDTO> exerciseGetDTOs = exerciseMapper.exercisesToExercisesDto(
-                    exerciseService.findAll()
-            );
+                    exerciseService.findAll());
             return ResponseEntity.ok(exerciseGetDTOs);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @Operation(summary = "Get a exercise by ID")
@@ -73,15 +69,14 @@ public class ExerciseController {
     })
     @GetMapping("{id}")
     public ResponseEntity getById(@PathVariable int id) {
-        try {
-            ExerciseGetDTO exerciseDTO = exerciseMapper.exerciseDTO(exerciseService.findById(id)
+
+            ExerciseGetDTO exerciseGetDTO = exerciseMapper.exerciseDTO(exerciseService.findById(id)
             );
-            return ResponseEntity.ok(exerciseDTO);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+            return ResponseEntity.ok(exerciseGetDTO);
+
     }
     @CrossOrigin(origins = "http://localhost:3000")
+    @Operation(summary = "Adding a new exercise")
     @PostMapping()
     public ResponseEntity<Exercise> add(@RequestBody Exercise exercise) {
         Exercise exerciseToAdd = exerciseService.add(exercise);

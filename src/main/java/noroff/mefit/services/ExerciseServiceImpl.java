@@ -1,5 +1,6 @@
 package noroff.mefit.services;
 
+import noroff.mefit.exceptions.ExerciseNotFoundException;
 import noroff.mefit.models.Exercise;
 import noroff.mefit.repositories.ExerciseRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,8 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public Exercise findById(Integer id) {
-        return exerciseRepository.findById(id).get();
+        return exerciseRepository.findById(id)
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
     }
 
     @Override

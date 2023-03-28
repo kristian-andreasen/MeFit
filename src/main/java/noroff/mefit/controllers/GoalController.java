@@ -1,9 +1,18 @@
 package noroff.mefit.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import noroff.mefit.dtos.ExerciseGetDTO;
+import noroff.mefit.exceptions.GoalNotFoundException;
 import noroff.mefit.models.Goal;
 import noroff.mefit.models.Goal;
 import noroff.mefit.services.GoalService;
 import noroff.mefit.services.GoalServiceImpl;
+import noroff.mefit.util.ApiErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +23,7 @@ import java.net.URI;
 import java.security.Principal;
 import java.util.Collection;
 
-@Controller
+@RestController
 @RequestMapping("api/v1/goals")
 public class GoalController {
     private final GoalService goalService;
@@ -23,6 +32,21 @@ public class GoalController {
         this.goalService = goalService;
     }
 
+    @Operation(summary = "Get all goals, related to the logged in user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Success",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Goal.class))) }),
+            @ApiResponse(responseCode = "404",
+                    description = "Current user has not set any goals.",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ApiErrorResponse.class)) })
+    })
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public ResponseEntity<Collection<Goal>> getAll(Principal principal) {
@@ -33,6 +57,7 @@ public class GoalController {
             // Wrap the collection of goals in a ResponseEntity object with a 200 OK status code
             return ResponseEntity.ok(toReturn);
         } catch (Exception e) {
+            //throw new GoalNotFoundException(userId);
             // Handle any exceptions that occur and return an error response
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
