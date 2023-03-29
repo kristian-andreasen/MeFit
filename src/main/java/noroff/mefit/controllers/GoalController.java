@@ -3,6 +3,7 @@ package noroff.mefit.controllers;
 import noroff.mefit.models.Goal;
 import noroff.mefit.models.Workout;
 import noroff.mefit.services.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class GoalController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("")
     public ResponseEntity<Collection<Goal>> getAll(Principal principal) {
         try {
@@ -49,7 +50,7 @@ public class GoalController {
      * @param id The ID of the goal to retrieve.
      * @return A ResponseEntity containing the retrieved goal and a 200 OK status code, or a 404 Not Found status code if no goal is found with the specified ID.
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @GetMapping("{id}")
     public ResponseEntity<Goal> getById(@PathVariable int id) {
         Goal goal = goalService.findById(id);
@@ -65,7 +66,7 @@ public class GoalController {
      * @param goal The goal to add.
      * @return A ResponseEntity containing the added goal and a 201 Created status code, or a 400 Bad Request status code if the goal is invalid.
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PostMapping()
     public ResponseEntity<Goal> add(Principal principal, @RequestBody Goal goal) {
         try {
@@ -104,7 +105,8 @@ public class GoalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @PutMapping("{id}")
     public ResponseEntity<Goal> update(@RequestBody Goal goal, @PathVariable int id) {
         // Validates if body is correct
@@ -113,7 +115,18 @@ public class GoalController {
         goalService.update(goal);
         return ResponseEntity.noContent().build();
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
+    @PatchMapping("{id}")
+    public ResponseEntity<Goal> updateAchieved(@RequestBody Goal goall, @PathVariable int id) {
+        //goalService.findById(id).setAchieved(true);
+        Goal goal = goalService.findById(id);
+        goal.setAchieved(true);
+        goalService.update(goal);
+        return ResponseEntity.ok(goal);
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000", "${react.address}"})
     @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
     public ResponseEntity delete(@PathVariable int id){
         goalService.deleteById(id);
