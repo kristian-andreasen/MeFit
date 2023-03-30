@@ -5,7 +5,7 @@
 INSERT INTO address ("address_line1","address_line2","address_line3","city","country","postal_code") VALUES ('The Jolly Roger','Cabin 3B','Deep Down','Atlantis','Oceania','666');--1
 
 -- goal
---INSERT INTO goal (name, achieved, start_date, end_date) VALUES ('get swollen', false, '03-01-2023', '03-08-2023');
+INSERT INTO goal (name, achieved, start_date, end_date, user_id) VALUES ('get swollen', false, '03-01-2023', '03-08-2023','user');
 
 -- program
 

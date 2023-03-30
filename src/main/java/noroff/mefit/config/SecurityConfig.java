@@ -32,7 +32,7 @@ public class SecurityConfig {
 
                         //.requestMatchers("/api/v1/resources/authorized").hasAnyAuthority()
                         // All endpoints are protected
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer()
                 .jwt();
